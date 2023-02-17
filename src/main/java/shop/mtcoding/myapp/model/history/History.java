@@ -11,8 +11,8 @@ public class History {
 
     private Integer id;
     private Integer amount;
-    private Long wBlance;
-    private Long dBlance;
+    private Long wBalance;
+    private Long dBalance;
     private String wAccountId;
     private String dAccountId;
     private Timestamp createdAt;

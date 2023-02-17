@@ -12,7 +12,7 @@ public class Account {
     private Integer id;
     private String number;
     private String password;
-    private Long blance;
+    private Long balance;
     private Integer userId;
     private Timestamp createdAt;
 }

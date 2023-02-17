@@ -7,19 +7,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bank App</title>
+    < link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <h1>메인페이지</h1>
     <hr />
     <ul>
-        <li><a href="/loginForm">로그인</a></li>
-        <li><a href="/joinForm">회원가입</a></li>
+    <c:choose>
+       <c:when test="${principal} != null">
         <li><a href="/logout">로그아웃</a></li>
         <li><a href="/account">계좌목록(인증)</a></li>
         <li><a href="/account/saveForm">계좌생성(인증)</a></li>
         <li><a href="/account/transferForm">이체하기(인증)</a></li>
         <li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
         <li><a href="/account/depositForm">입금하기(미인증)</a></li>
+       </c:when>
+       <c:otherwise>
+        <li><a href="/loginForm">로그인</a></li>
+        <li><a href="/joinForm">회원가입</a></li>
+        <li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
+        <li><a href="/account/depositForm">입금하기(미인증)</a></li>
+       </c:otherwise>
+    </c:choose>
     </ul>
