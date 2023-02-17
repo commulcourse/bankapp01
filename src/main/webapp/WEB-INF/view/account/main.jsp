@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="/account/#{id}">1111</a></td>
+                    <td><a href="/account/{id}">1111</a></td>
                     <td>1000원</td>
                 </tr>
             </tbody>
