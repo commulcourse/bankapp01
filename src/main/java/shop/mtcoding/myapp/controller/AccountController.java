@@ -3,17 +3,12 @@ package shop.mtcoding.myapp.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import shop.mtcoding.myapp.dto.account.AccountSaveReqDto;
-import shop.mtcoding.myapp.handler.ex.CustomException;
 import shop.mtcoding.myapp.model.account.AccountRepository;
 import shop.mtcoding.myapp.model.history.HistoryRepository;
-import shop.mtcoding.myapp.model.user.User;
 
 @Controller
 public class AccountController {
