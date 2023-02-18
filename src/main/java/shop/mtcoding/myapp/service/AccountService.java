@@ -16,7 +16,7 @@ public class AccountService {
 
     @Transactional
     public void 계좌생성(AccountSaveReqDto accountSaveReqDto, int principalId) {
-        Account accout = accountSaveReqDto.toModel(principalId);
-        accountRepository.insert(accout);
+        Account account = accountSaveReqDto.toModel(principalId);
+        accountRepository.insert(account);
     }
 }

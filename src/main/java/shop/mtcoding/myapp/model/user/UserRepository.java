@@ -9,8 +9,6 @@ import shop.mtcoding.myapp.dto.user.LoginReqDto;
 @Mapper
 public interface UserRepository {
 
-    public User findByUsernameAndPassword(LoginReqDto loginReqDto);
-
     public int insert(User user);
 
     public int updateById(User user);
@@ -21,4 +19,5 @@ public interface UserRepository {
 
     public User findById(int id);
 
+    public User findByUsernameAndPassword(LoginReqDto loginReqDto);
 }

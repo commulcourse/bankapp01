@@ -5,6 +5,10 @@
 
 <mapper namespace="shop.mtcoding.myapp.model.account.AccountRepository">
 
+    <select id="findByUserId" resultType="shop.mtcoding.myapp.model.account.Account">
+        SELECT * FROM ACCOUNT_TB WHERE user_id = #{principalId}
+    </select> 
+ 
     <select id="findAll" resultType="shop.mtcoding.myapp.model.account.Account">
         select * from account_tb
     </select>

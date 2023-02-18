@@ -10,6 +10,7 @@ public class AccountSaveReqDto {
     private String number;
     private String password;
 
+    // insert, update 할때 필요하다.
     public Account toModel(int principalId) {
         Account account = new Account();
         account.setNumber(number);

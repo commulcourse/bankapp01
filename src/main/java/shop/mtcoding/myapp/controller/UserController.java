@@ -5,9 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import shop.mtcoding.myapp.dto.account.AccountSaveReqDto;
 import shop.mtcoding.myapp.dto.user.JoinReqDto;
 import shop.mtcoding.myapp.dto.user.LoginReqDto;
 import shop.mtcoding.myapp.handler.ex.CustomException;
@@ -40,7 +40,7 @@ public class UserController {
         // User principal = new User();
         // principal.setId(1);
         // principal.setUsername("ssar");
-        if (principal != null) {
+        if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다.", HttpStatus.BAD_REQUEST);
         }
         session.setAttribute("principal", principal);
@@ -62,6 +62,16 @@ public class UserController {
         userService.회원가입(joinReqDto);
 
         return "redirect:/loginForm";
+    }
+
+    @GetMapping("/joinForm")
+    public String joinForm() {
+        return "user/joinForm";
+    }
+
+    @GetMapping("/loginForm")
+    public String loginForm() {
+        return "user/loginForm";
     }
 
     @PostMapping("/logout")
