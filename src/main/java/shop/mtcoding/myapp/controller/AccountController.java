@@ -32,24 +32,25 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/acoount/withdraw")
-    public String withdraw(AccountWithdrawReqDto accountWithdrawReqDto) {
-        if (accountWithdrawReqDto.getAmount() == null) {
-            throw new CustomException("amount를 입력해주세요", HttpStatus.BAD_REQUEST);
-        }
-        if (accountWithdrawReqDto.getAmount().longValue() <= 0) {
-            throw new CustomException("출금액이 0원 이하 일수 없습니다", HttpStatus.BAD_REQUEST);
-        }
-        if (accountWithdrawReqDto.getWAccountNumber() == null || accountWithdrawReqDto.getWAccountNumber().isEmpty()) {
-            throw new CustomException("계좌번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-        }
-        if (accountWithdrawReqDto.getWAccountPassword() == null
-                || accountWithdrawReqDto.getWAccountPassword().isEmpty()) {
-            throw new CustomException("계좌비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-        }
-        int accountId = accountService.계좌출금(accountWithdrawReqDto);
-        return "redirect:/accout/" + accountId;
-    }
+    // @PostMapping("/acoount/withdraw")
+    // public String withdraw(AccountWithdrawReqDto accountWithdrawReqDto) {
+    // if (accountWithdrawReqDto.getAmount() == null) {
+    // throw new CustomException("amount를 입력해주세요", HttpStatus.BAD_REQUEST);
+    // }
+    // if (accountWithdrawReqDto.getAmount().longValue() <= 0) {
+    // throw new CustomException("출금액이 0원 이하 일수 없습니다", HttpStatus.BAD_REQUEST);
+    // }
+    // if (accountWithdrawReqDto.getWAccountNumber() == null ||
+    // accountWithdrawReqDto.getWAccountNumber().isEmpty()) {
+    // throw new CustomException("계좌번호를 입력해주세요", HttpStatus.BAD_REQUEST);
+    // }
+    // if (accountWithdrawReqDto.getWAccountPassword() == null
+    // || accountWithdrawReqDto.getWAccountPassword().isEmpty()) {
+    // throw new CustomException("계좌비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
+    // }
+    // int accountId = accountService.계좌출금(accountWithdrawReqDto);
+    // return "redirect:/accout/" + accountId;
+    // }
 
     @PostMapping("/account")
     public String save(AccountSaveReqDto accountSaveReqDto) {

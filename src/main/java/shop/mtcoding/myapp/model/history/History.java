@@ -10,7 +10,7 @@ import lombok.Setter;
 public class History {
 
     private Integer id;
-    private Integer amount;
+    private Long amount;
     private Long wBalance;
     private Long dBalance;
     private String wAccountId;
