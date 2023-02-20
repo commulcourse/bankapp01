@@ -36,4 +36,8 @@ public class Account {
         this.balance = this.balance - amount;
     }
 
+    public void deposit(long amount) {
+        this.balance = this.balance + amount;
+    }
+
 }
