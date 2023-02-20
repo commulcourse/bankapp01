@@ -19,6 +19,15 @@ public class Account {
     private Integer userId;
     private Timestamp createdAt;
 
+    public void withdraw(long amount) {
+        // accountPS에서 가져온 금액에서 - 출금금액만큼 뺀 후 accountPS.setBalance로 넣어주겠다.
+        this.balance = this.balance - amount;
+    }
+
+    public void deposit(long amount) {
+        this.balance = this.balance + amount;
+    }
+
     public void checkPassword(String password) {
         if (!this.password.equals(password)) {
             throw new CustomException("출금계좌 비밀번호가 틀렸다!!", HttpStatus.BAD_REQUEST);
@@ -31,13 +40,10 @@ public class Account {
         }
     }
 
-    public void withdraw(long amount) {
-        // accountPS에서 가져온 금액에서 - 출금금액만큼 뺀 후 accountPS.setBalance로 넣어주겠다.
-        this.balance = this.balance - amount;
-    }
-
-    public void deposit(long amount) {
-        this.balance = this.balance + amount;
+    public void checkOwner(Integer principalId) {
+        if (userId != principalId) {
+            throw new CustomException("계좌 소유자가 아닙니다", HttpStatus.FORBIDDEN);
+        }
     }
 
 }

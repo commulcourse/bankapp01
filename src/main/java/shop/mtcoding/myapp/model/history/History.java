@@ -13,7 +13,8 @@ public class History {
     private Long amount;
     private Long wBalance;
     private Long dBalance;
-    private String wAccountId;
-    private String dAccountId;
+    private Integer wAccountId;
+    private Integer dAccountId;
     private Timestamp createdAt;
+
 }
