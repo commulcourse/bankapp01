@@ -11,13 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import shop.mtcoding.myapp.dto.account.AccountDetailRespDto;
 import shop.mtcoding.myapp.dto.account.AccountSaveReqDto;
 import shop.mtcoding.myapp.dto.account.AccountTransferReqDto;
 import shop.mtcoding.myapp.dto.account.AccountWithdrawReqDto;
+import shop.mtcoding.myapp.dto.history.HistoryRespDto;
 import shop.mtcoding.myapp.handler.ex.CustomException;
 import shop.mtcoding.myapp.model.account.Account;
 import shop.mtcoding.myapp.model.account.AccountRepository;
+import shop.mtcoding.myapp.model.history.HistoryRepository;
 import shop.mtcoding.myapp.model.user.User;
 import shop.mtcoding.myapp.service.AccountService;
 
@@ -34,6 +38,7 @@ public class AccountController {
     private AccountService accountService;
 
     @Autowired
+    private HistoryRepository historyRepository;
 
     @PostMapping("/account/transfer")
     public String transfer(AccountTransferReqDto accountTransferReqDto) {
@@ -120,7 +125,20 @@ public class AccountController {
     }
 
     @GetMapping("/account/{id}")
-    public String detail(@PathVariable int id) {
+    public String detail(@PathVariable int id, @RequestParam(name = "gubun", defaultValue = "all") String gubun,
+            Model model) {
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            return "redirect:/loginForm";
+        }
+        AccountDetailRespDto aDto = accountRepository.findByIdWithUser(id);
+        if (aDto.getUserId() != principal.getId()) {
+            throw new CustomException("해당 계좌를 볼 수 있는 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
+        List<HistoryRespDto> hDtoList = historyRepository.findByGubun(gubun, id);
+
+        model.addAttribute("aDto", aDto);
+        model.addAttribute("hDtoList", hDtoList);
         return "account/detail";
     }
 
